@@ -56,6 +56,51 @@ def create_app():
     for m in (auth, patient, staff, admin, chatbot):
         a.register_blueprint(m.bp)
     init_db()
+    # Non-destructive addition: a patient's optional display nickname.
+    from models.db import q as account_query
+    account_query('ALTER TABLE users ADD COLUMN IF NOT EXISTS nickname TEXT')
+
+    from flask import request as settings_request, session as settings_session, jsonify as settings_jsonify
+    from werkzeug.security import check_password_hash as verify_password, generate_password_hash as hash_password
+    import re as settings_re
+
+    @a.get('/api/patient/settings')
+    def patient_settings_get():
+        if settings_session.get('role') != 'patient':
+            return settings_jsonify(error='Forbidden'), 403
+        record = account_query('SELECT name,nickname,patient_no,philhealth_no,email FROM users WHERE id=? AND role=\'patient\'', (settings_session['uid'],), one=True)
+        if not record: return settings_jsonify(error='Account not found'), 404
+        return settings_jsonify(dict(record))
+
+    @a.post('/api/patient/settings/nickname')
+    def patient_settings_nickname():
+        if settings_session.get('role') != 'patient':
+            return settings_jsonify(error='Forbidden'), 403
+        data = settings_request.get_json(silent=True) or {}
+        nickname = str(data.get('nickname') or '').strip()
+        if len(nickname) > 30 or (nickname and not settings_re.fullmatch(r"[\w .'-]+", nickname, settings_re.UNICODE)):
+            return settings_jsonify(error='Use up to 30 letters, numbers, spaces, periods, apostrophes or hyphens.'), 400
+        account_query('UPDATE users SET nickname=? WHERE id=? AND role=\'patient\'', (nickname or None, settings_session['uid']))
+        return settings_jsonify(ok=True,nickname=nickname)
+
+    @a.post('/api/patient/settings/password')
+    def patient_settings_password():
+        if settings_session.get('role') != 'patient':
+            return settings_jsonify(error='Forbidden'), 403
+        data = settings_request.get_json(silent=True) or {}
+        old = str(data.get('current_password') or '')
+        new = str(data.get('new_password') or '')
+        confirm = str(data.get('confirm_password') or '')
+        if new != confirm: return settings_jsonify(error='New passwords do not match'), 400
+        if len(new) < 10 or not all(settings_re.search(p,new) for p in (r'[a-z]',r'[A-Z]',r'\d',r'[^\w\s]')):
+            return settings_jsonify(error='Use 10+ characters with uppercase, lowercase, a number and a symbol.'), 400
+        record = account_query('SELECT pw FROM users WHERE id=? AND role=\'patient\'', (settings_session['uid'],), one=True)
+        if not record or not record['pw'] or not verify_password(record['pw'],old):
+            return settings_jsonify(error='Current password is incorrect'), 400
+        if verify_password(record['pw'],new):
+            return settings_jsonify(error='Choose a password different from the current password'), 400
+        account_query('UPDATE users SET pw=?, failed=0, locked_until=0 WHERE id=? AND role=\'patient\'', (hash_password(new),settings_session['uid']))
+        return settings_jsonify(ok=True)
     return a
 
 app = create_app()
