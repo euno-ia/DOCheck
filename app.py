@@ -58,7 +58,9 @@ def create_app():
     init_db()
     # Non-destructive addition: a patient's optional display nickname.
     from models.db import q as account_query
-    account_query('ALTER TABLE users ADD COLUMN IF NOT EXISTS nickname TEXT')
+    # Database helper uses flask.g, so schema updates require an app context.
+    with a.app_context():
+        account_query('ALTER TABLE users ADD COLUMN IF NOT EXISTS nickname TEXT')
 
     from flask import request as settings_request, session as settings_session, jsonify as settings_jsonify
     from werkzeug.security import check_password_hash as verify_password, generate_password_hash as hash_password
