@@ -244,6 +244,54 @@ body.patient-dark{--input-bg:#20372e;--line:#345449;--muted:#bed2c8;background:#
  #chat[style*="display: block"]{display:flex!important}#chat header{flex:0 0 auto;min-height:50px}#chat #msgs{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important}#chat .in{display:flex!important;flex:0 0 auto!important;align-items:center!important;gap:9px!important;padding:10px!important;background:#fff!important;border-top:1px solid #dbe7df!important}#chat .in input{flex:1 1 auto!important;min-width:0!important;width:0!important;max-width:none!important;height:46px!important;border-radius:12px!important;padding:0 12px!important;font-size:16px!important}#chat .in button{flex:0 0 48px!important;width:48px!important;height:46px!important;border-radius:12px!important;padding:0!important;display:grid!important;place-items:center!important}
  body.patient-dark #chat{background:#192d26!important;color:#eef8f2!important}body.patient-dark #chat .in{background:#192d26!important;border-color:#345449!important}body.patient-dark #chat #msgs{background:#192d26!important}
 }
+
+/* DOCheck mobile finishing pass: align content and keep every card inside viewport. */
+@media(max-width:600px){
+ html,body,#root,.app,.app main,.page{width:100%;max-width:100%;min-width:0;overflow-x:clip}
+ .page{padding:20px 16px!important;margin:0 auto!important;box-sizing:border-box}
+ .page > *, .page .card,.page .wrap,.page .g2,.page .g3,.page .cards{min-width:0;max-width:100%;box-sizing:border-box}
+ .page .card{margin-left:0!important;margin-right:0!important;padding:18px!important}
+ .page .g2,.page .g3,.page .cards{gap:16px!important}
+ .patient-schedule-grid .patient-calendar-doctor{padding:18px 4px!important;gap:9px!important}
+ .patient-schedule-grid .patient-sc{min-width:0!important}
+ .patient-schedule-grid .patient-sc .cell{width:100%;min-width:0;max-width:100%;padding:5px 2px!important;font-size:11px!important;overflow-wrap:anywhere}
+ .patient-schedule-grid .patient-sc .cell small{font-size:10px!important}
+ .patient-schedule-grid .patient-calendar-doctor > .sr{padding:0 2px 8px!important}
+ .side .brand{gap:8px!important;padding:10px 12px!important;flex-wrap:nowrap!important}
+ .side .brand .official-logo{width:38px!important;height:38px!important;min-width:38px!important;flex:0 0 38px!important}
+ .side .brand>div:last-child{display:flex!important;align-items:center!important;gap:5px!important;flex:1!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important}
+ .side .brand>div:last-child b{font-size:clamp(10px,3vw,13px)!important;white-space:nowrap!important;line-height:1.2!important}
+ .side .brand>div:last-child .mut,.side .brand>div:last-child .brand-location{font-size:clamp(8px,2.35vw,10px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin:0!important}
+ #chat{left:12px!important;right:12px!important;width:auto!important;border-radius:18px!important}
+ #chat #msgs{padding:14px!important}
+ #chat #msgs .m{max-width:92%!important;margin:9px 0!important;padding:11px 13px!important}
+ #chat #msgs .m.u{margin-left:auto!important}
+ #chat .in{padding:12px!important;gap:10px!important}
+}
+
+/* DOCheck mobile finishing pass: align content and keep every card inside viewport. */
+@media(max-width:600px){
+ html,body,#root,.app,.app main,.page{width:100%;max-width:100%;min-width:0;overflow-x:clip}
+ .page{padding:20px 16px!important;margin:0 auto!important;box-sizing:border-box}
+ .page > *, .page .card,.page .wrap,.page .g2,.page .g3,.page .cards{min-width:0;max-width:100%;box-sizing:border-box}
+ .page .card{margin-left:0!important;margin-right:0!important;padding:18px!important}
+ .page .g2,.page .g3,.page .cards{gap:16px!important}
+ .patient-schedule-grid .patient-calendar-doctor{padding:18px 4px!important;gap:9px!important}
+ .patient-schedule-grid .patient-sc{min-width:0!important}
+ .patient-schedule-grid .patient-sc .cell{width:100%;min-width:0;max-width:100%;padding:5px 2px!important;font-size:11px!important;overflow-wrap:anywhere}
+ .patient-schedule-grid .patient-sc .cell small{font-size:10px!important}
+ .patient-schedule-grid .patient-calendar-doctor > .sr{padding:0 2px 8px!important}
+ .side .brand{gap:8px!important;padding:10px 12px!important;flex-wrap:nowrap!important}
+ .side .brand .official-logo{width:38px!important;height:38px!important;min-width:38px!important;flex:0 0 38px!important}
+ .side .brand>div:last-child{display:flex!important;align-items:center!important;gap:5px!important;flex:1!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important}
+ .side .brand>div:last-child b{font-size:clamp(10px,3vw,13px)!important;white-space:nowrap!important;line-height:1.2!important}
+ .side .brand>div:last-child .mut,.side .brand>div:last-child .brand-location{font-size:clamp(8px,2.35vw,10px)!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin:0!important}
+ #chat{left:12px!important;right:12px!important;width:auto!important;border-radius:18px!important}
+ #chat #msgs{padding:14px!important}
+ #chat #msgs .m{max-width:92%!important;margin:9px 0!important;padding:11px 13px!important}
+ #chat #msgs .m.u{margin-left:auto!important}
+ #chat .in{padding:12px!important;gap:10px!important}
+}
 </style></head><body class="{% if request.endpoint in ['auth.home','auth.reset_page'] %}authbg{% endif %}"><div id="root"></div><script>{% raw %}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
