@@ -341,7 +341,7 @@ body.authbg::before,body.authbg::after{content:"";position:fixed;z-index:-1;poin
 body.authbg::before{width:min(48vw,420px);height:min(48vw,420px);left:-13%;top:9%;background:radial-gradient(circle,#9ce7c3 0%,#d7f7e6 48%,transparent 72%)}
 body.authbg::after{width:min(42vw,360px);height:min(42vw,360px);right:-10%;bottom:3%;background:radial-gradient(circle,#9de2d9 0%,#dff9ed 52%,transparent 73%);animation-delay:-6s}
 body.authbg .acard{position:relative;transform-style:preserve-3d;box-shadow:0 26px 64px rgba(5,73,50,.12),0 5px 17px rgba(5,73,50,.06);border:1px solid rgba(155,209,179,.45);animation:dcCardEnter .55s cubic-bezier(.2,.75,.2,1) both;transition:box-shadow .3s ease,transform .3s ease;overflow:visible}
-body.authbg .acard::before{content:"";position:absolute;inset:0 0 auto;height:5px;border-radius:28px 28px 0 0;background:linear-gradient(90deg,#0d9488,#34d399,#0d9488);background-size:200% 100%;animation:dcShimmer 7s linear infinite}
+body.authbg .acard::before{content:none!important;display:none!important}
 body.authbg .acard:focus-within{box-shadow:0 32px 72px rgba(5,73,50,.16),0 0 0 1px rgba(16,185,129,.09)}
 body.authbg .acard h1,body.authbg .acard .sub{animation:dcTextEnter .55s ease both}
 body.authbg .acard .sub{animation-delay:.08s}
@@ -380,11 +380,11 @@ body.authbg .acard a:hover{color:#047857;text-shadow:0 0 10px rgba(16,185,129,.1
 
 /* DOCheck notebook-page auth transition and frosted input treatment */
 body.authbg .acard{transform-style:preserve-3d;backface-visibility:hidden;will-change:transform;transform-origin:center center}
-body.authbg .acard.dc-page-out{animation:dcPageOut .26s ease-in both}
-body.authbg .acard.dc-page-in{animation:dcPageIn .38s cubic-bezier(.2,.72,.2,1) both}
-/* Simple vertical flip (around the horizontal axis), not a book/page turn. */
-@keyframes dcPageOut{0%{opacity:1;transform:perspective(1100px) rotateX(0deg)}100%{opacity:0;transform:perspective(1100px) rotateX(-90deg)}}
-@keyframes dcPageIn{0%{opacity:0;transform:perspective(1100px) rotateX(90deg)}100%{opacity:1;transform:perspective(1100px) rotateX(0deg)}}
+body.authbg .acard.dc-page-out{animation:dcPageOut .34s cubic-bezier(.55,.05,.75,.3) both}
+body.authbg .acard.dc-page-in{animation:dcPageIn .42s cubic-bezier(.2,.7,.2,1) both}
+/* Top-to-bottom vertical flip: rotate around the horizontal X axis, never the Y axis. */
+@keyframes dcPageOut{0%{opacity:1;transform:perspective(1400px) rotateX(0deg)}100%{opacity:0;transform:perspective(1400px) rotateX(-90deg)}}
+@keyframes dcPageIn{0%{opacity:0;transform:perspective(1400px) rotateX(90deg)}100%{opacity:1;transform:perspective(1400px) rotateX(0deg)}}
 body.authbg .acard .inp{border:1px solid rgba(255,255,255,.8);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(231,250,243,.56));backdrop-filter:blur(14px) saturate(135%);-webkit-backdrop-filter:blur(14px) saturate(135%);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 5px 16px rgba(19,105,75,.065);transition:transform .23s,box-shadow .23s,border-color .23s,background .23s}
 body.authbg .acard .inp:focus-within{border-color:rgba(16,185,129,.62);background:linear-gradient(135deg,rgba(255,255,255,.94),rgba(219,251,238,.73));box-shadow:inset 0 1px 0 #fff,0 0 0 3px rgba(16,185,129,.12),0 10px 25px rgba(5,110,75,.12)}
 body.authbg .acard .inp input,body.authbg .acard .inp select{background:transparent!important;box-shadow:none!important;border-color:transparent!important;min-width:0}
@@ -603,7 +603,7 @@ function switchAuth(next){
   if(fresh){fresh.classList.add('dc-page-in');fresh.addEventListener('animationend',()=>{fresh.classList.remove('dc-page-in');dcAuthSwitching=false},{once:true});
    window.setTimeout(()=>{fresh.classList.remove('dc-page-in');dcAuthSwitching=false},550);
   }else{dcAuthSwitching=false}
- },260);
+ },340);
 }
 
 function draw(){const V={
