@@ -570,6 +570,37 @@ body.patient-dark .ov{background:rgba(0,0,0,.73)!important}
  body.patient-dark .card,body.patient-dark .settings-card{box-shadow:4px 7px 16px rgba(0,0,0,.25)!important}
 }
 
+
+/* Interior-only white + green restoration. Authentication pages are intentionally untouched. */
+body:not(.authbg):not(.patient-dark){
+ --ink:#173c2d;--mut:#557366;--line:#d6e9df;--bg:#f4faf6;
+ background:linear-gradient(145deg,#f7fcf9 0%,#edf8f1 58%,#f9fdfb 100%)!important;
+}
+body:not(.authbg):not(.patient-dark) .side{background:#fff!important;border-color:#d9ebdf!important;box-shadow:3px 0 18px rgba(24,96,59,.05)!important}
+body:not(.authbg):not(.patient-dark) .topbar{background:rgba(255,255,255,.97)!important;border-color:#d9ebdf!important;box-shadow:0 3px 12px rgba(24,96,59,.05)!important}
+body:not(.authbg):not(.patient-dark) :is(.card,.settings-card,.mod){background:#fff!important;border:1px solid #d6e9dc!important;box-shadow:0 5px 20px rgba(20,94,57,.07)!important;color:#173c2d!important}
+body:not(.authbg):not(.patient-dark) :is(.card,.settings-card,.mod) :is(p,li,td,label){color:inherit}
+body:not(.authbg):not(.patient-dark) :is(.card,.settings-card,.mod) :is(h1,h2,h3,h4,.ctitle){color:#145638!important}
+body:not(.authbg):not(.patient-dark) :is(.mut,.sub,.stat .l){color:#557366!important}
+body:not(.authbg):not(.patient-dark) :is(.btn2,.tab:not(.on),.lang){background:#f0faf3!important;color:#195a3b!important;border-color:#c8e4d2!important;box-shadow:none!important}
+body:not(.authbg):not(.patient-dark) :is(.ni.on,.tab.on,.btn){background:linear-gradient(110deg,#168252,#279b66)!important;color:white!important;box-shadow:0 4px 12px rgba(22,130,82,.14)!important}
+body:not(.authbg):not(.patient-dark) :is(.fld input,.fld select,.fld textarea,.bar2 input,.bar2 select,.settings-card input,.settings-card select,.settings-card textarea){background:#fff!important;color:#173c2d!important;border:1px solid #c7dfd0!important;box-shadow:none!important}
+body:not(.authbg):not(.patient-dark) table th{background:#edf8f0!important;color:#215e3d!important}
+body:not(.authbg):not(.patient-dark) .sg{background:#f5fbf7!important}
+body:not(.authbg):not(.patient-dark) .mrow{background:#fff!important}
+/* Chat is a fixed overlay outside the page cards: scope separately to the interior. */
+body:not(.authbg):not(.patient-dark) #chat{background:#fff!important;border:1px solid #cbe6d6!important;box-shadow:0 16px 42px rgba(15,77,48,.18)!important;color:#173c2d!important}
+body:not(.authbg):not(.patient-dark) #chat header{background:linear-gradient(105deg,#10ae7a,#159d83)!important;color:#fff!important}
+body:not(.authbg):not(.patient-dark) #msgs{background:#fff!important;color:#173c2d!important}
+body:not(.authbg):not(.patient-dark) #msgs .m:not(.u){background:#eaf8ef!important;color:#204934!important}
+body:not(.authbg):not(.patient-dark) #msgs .m.u{background:#218f61!important;color:#fff!important}
+body:not(.authbg):not(.patient-dark) #chat .in{background:#fff!important;border-top:1px solid #d5e8dd!important}
+body:not(.authbg):not(.patient-dark) #chat .in input{background:#fff!important;color:#173c2d!important;border:1px solid #bddbc9!important;box-shadow:none!important;outline-offset:1px}
+body:not(.authbg):not(.patient-dark) #chat .in input::placeholder{color:#789185!important}
+body:not(.authbg):not(.patient-dark) #chat .in button{background:#208e60!important;color:#fff!important}
+/* Keep the chatbot legible when the patient explicitly selects dark mode. */
+body.patient-dark #chat .in input{background:#254336!important;color:#f3fff7!important;border:1px solid #668f77!important;box-shadow:none!important}
+body.patient-dark #chat .in input::placeholder{color:#c3d9cb!important}
 </style></head><body class="{% if request.endpoint in ['auth.home','auth.reset_page'] %}authbg{% endif %}"><div id="root"></div><script>{% raw %}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
