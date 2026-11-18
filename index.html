@@ -474,6 +474,102 @@ body.authbg .inp input:focus,body.authbg .inp select:focus{
 body.authbg .acard .lbl{color:#143c2c!important}
 body.authbg .acard .sub,body.authbg .acard .alt{color:#456c59!important}
 @media(max-width:600px){body.authbg{background:linear-gradient(145deg,#c5e8d3,#7bbda3 65%,#37866f)!important;background-attachment:fixed!important}body.authbg .acard{box-shadow:12px 18px 36px rgba(12,65,46,.3),inset 2px 2px 0 #fff!important}}
+
+/* DOCheck! unified visual depth and contrast — all authenticated roles */
+body:not(.authbg):not(.patient-dark){
+ --ink:#143a2c;--mut:#496c5c;--line:#bddfcf;--bg:#e3f3e9;
+ background:radial-gradient(ellipse 70% 65% at 6% 9%,rgba(82,198,144,.23),transparent 72%),
+ radial-gradient(ellipse 65% 75% at 96% 94%,rgba(18,139,111,.18),transparent 72%),
+ linear-gradient(145deg,#e3f3e9 0%,#cce8d9 52%,#b6dccb 100%);
+ background-attachment:fixed;
+}
+body:not(.authbg):not(.patient-dark) .app,
+body:not(.authbg):not(.patient-dark) main,
+body:not(.authbg):not(.patient-dark) .page{background:transparent;color:var(--ink)}
+body:not(.authbg):not(.patient-dark) .side{
+ background:linear-gradient(165deg,#f0faf3 0%,#d8eee2 100%);
+ border-right:1px solid #b4d7c5;box-shadow:6px 0 26px rgba(21,87,58,.09);
+}
+body:not(.authbg):not(.patient-dark) .topbar{
+ background:linear-gradient(110deg,rgba(248,255,250,.94),rgba(217,239,226,.94));
+ border-bottom:1px solid #badfcd;box-shadow:0 5px 20px rgba(20,90,61,.08);
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+body:not(.authbg):not(.patient-dark) .card,
+body:not(.authbg):not(.patient-dark) .settings-card,
+body:not(.authbg):not(.patient-dark) .mod{
+ background:linear-gradient(145deg,#f4fcf6 0%,#e0f2e7 100%);
+ border:1px solid #b9ddc8;
+ box-shadow:9px 12px 28px rgba(21,92,59,.13),-3px -3px 14px rgba(255,255,255,.65),inset 1px 1px 0 rgba(255,255,255,.9);
+}
+body:not(.authbg):not(.patient-dark) .card :is(h1,h2,h3,h4,.ctitle),
+body:not(.authbg):not(.patient-dark) .page :is(h1,h2,h3),
+body:not(.authbg):not(.patient-dark) .mod :is(h1,h2,h3){color:#123e2c}
+body:not(.authbg):not(.patient-dark) .mut,
+body:not(.authbg):not(.patient-dark) .sub,
+body:not(.authbg):not(.patient-dark) .stat .l{color:#496d5c}
+body:not(.authbg):not(.patient-dark) .ni:not(.on):hover,
+body:not(.authbg):not(.patient-dark) .tab:not(.on):hover{background:#c8e9d7;color:#14583b}
+body:not(.authbg):not(.patient-dark) .ni.on,
+body:not(.authbg):not(.patient-dark) .tab.on,
+body:not(.authbg):not(.patient-dark) .btn{
+ background:linear-gradient(105deg,#087c57 0%,#13966c 52%,#178f7b 100%);
+ color:#fff;box-shadow:0 7px 16px rgba(6,111,76,.21);
+}
+body:not(.authbg):not(.patient-dark) .btn2,
+body:not(.authbg):not(.patient-dark) .tab:not(.on),
+body:not(.authbg):not(.patient-dark) .lang{
+ background:linear-gradient(145deg,#f5fff8,#e1f3e8);border-color:#afd7c1;color:#194734;
+ box-shadow:3px 4px 10px rgba(33,104,68,.09);
+}
+body:not(.authbg):not(.patient-dark) :is(.fld input,.fld select,.fld textarea,.bar2 input,.bar2 select,.settings-card input,.settings-card select,.settings-card textarea){
+ background:linear-gradient(145deg,#e2f1e7,#f5fcf7);color:#173d2c;border:1px solid #a9d3bd;
+ box-shadow:inset 3px 3px 7px rgba(44,111,75,.1),inset -2px -2px 7px rgba(255,255,255,.8);
+}
+body:not(.authbg):not(.patient-dark) :is(.fld input,.fld select,.fld textarea,.bar2 input,.bar2 select,.settings-card input,.settings-card select,.settings-card textarea):focus{
+ outline:2px solid #20a875;outline-offset:1px;background:#f5fff8;
+}
+body:not(.authbg):not(.patient-dark) table th{color:#285b43;background:rgba(181,226,198,.36)}
+body:not(.authbg):not(.patient-dark) table :is(td,th){border-bottom-color:#c4e2d1}
+body:not(.authbg):not(.patient-dark) .chip{background:#b9efd3;color:#075b3a}
+body:not(.authbg):not(.patient-dark) .chip.OffDuty{background:#e3eae8;color:#475c55}
+body:not(.authbg):not(.patient-dark) .chip.OnLeave{background:#fff0bc;color:#865008}
+body:not(.authbg):not(.patient-dark) .chip.FullyBooked{background:#ffdddd;color:#a52b2b}
+body:not(.authbg):not(.patient-dark) .ov{background:rgba(9,41,28,.57)}
+body:not(.authbg):not(.patient-dark) .sg{background:#e5f3e9;color:#143a2c}
+body:not(.authbg):not(.patient-dark) .sg :is(.sh,.sr,.sc){border-color:#b9dcca}
+body:not(.authbg):not(.patient-dark) .cell.OffDuty{background:#e9efee;color:#60766e;border-color:#d4e0db}
+body:not(.authbg):not(.patient-dark) .cell.OnLeave{background:#fff0c5;color:#9b5b08;border-color:#f3d875}
+body:not(.authbg):not(.patient-dark) .cell.FullyBooked{background:#ffe0df;color:#a82525;border-color:#f5b9b5}
+/* Dark-mode contrast, surface depth, and legible secondary controls */
+body.patient-dark{--ink:#eaf8ee;--mut:#c3dccf;--line:#416757;
+ background:radial-gradient(ellipse at 90% 10%,#204b3b,#0c1d17 65%)!important}
+body.patient-dark .app,body.patient-dark main,body.patient-dark .page{background:transparent!important}
+body.patient-dark .side,body.patient-dark .topbar{
+ background:linear-gradient(150deg,#1c382c,#14291f)!important;border-color:#42634f!important;
+ box-shadow:0 8px 24px rgba(0,0,0,.23)}
+body.patient-dark .card,body.patient-dark .settings-card,body.patient-dark .mod,body.patient-dark .ov .mod{
+ background:linear-gradient(145deg,#213e30,#182e25)!important;
+ border:1px solid #476d57!important;box-shadow:8px 12px 24px rgba(0,0,0,.23),inset 1px 1px 0 rgba(170,229,192,.08)!important;
+}
+body.patient-dark .page :is(h1,h2,h3,h4,.ctitle),body.patient-dark .mod :is(h1,h2,h3){color:#eefaf1!important}
+body.patient-dark :is(.mut,.sub,.stat .l){color:#c2d9cb!important}
+body.patient-dark .btn,body.patient-dark .ni.on,body.patient-dark .tab.on{background:linear-gradient(110deg,#197b51,#299b65)!important;color:#fff!important}
+body.patient-dark :is(.btn2,.tab:not(.on),.lang){background:#284638!important;border-color:#60836c!important;color:#f0fff4!important}
+body.patient-dark :is(.fld input,.fld select,.fld textarea,.bar2 input,.bar2 select){background:#213d30!important;border:1px solid #5b806a!important;color:#f3fff6!important}
+body.patient-dark :is(.fld input,.fld select,.fld textarea,.bar2 input,.bar2 select):focus{outline:2px solid #74d7a1;outline-offset:1px}
+body.patient-dark table th{background:#2c4b39;color:#dcf4e5!important}
+body.patient-dark table :is(td,th){border-color:#446454}
+body.patient-dark .chip.OffDuty{background:#354b42;color:#d3e0d8}
+body.patient-dark .chip.OnLeave{background:#5c4827;color:#ffe2a0}
+body.patient-dark .chip.FullyBooked{background:#603338;color:#ffb9c0}
+body.patient-dark .sg{background:#182d23!important}
+body.patient-dark .ov{background:rgba(0,0,0,.73)!important}
+@media(max-width:600px){
+ body:not(.authbg):not(.patient-dark) .card,body:not(.authbg):not(.patient-dark) .settings-card{box-shadow:4px 7px 18px rgba(21,92,59,.12),inset 1px 1px 0 #fff}
+ body.patient-dark .card,body.patient-dark .settings-card{box-shadow:4px 7px 16px rgba(0,0,0,.25)!important}
+}
+
 </style></head><body class="{% if request.endpoint in ['auth.home','auth.reset_page'] %}authbg{% endif %}"><div id="root"></div><script>{% raw %}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
