@@ -444,6 +444,36 @@ body.authbg .acard .lbl{color:#23483a}
 body.authbg .acard .sub,body.authbg .acard .alt{color:#5b7769}
 @media(max-width:600px){body.authbg .acard{border-radius:24px;box-shadow:10px 12px 25px rgba(111,151,127,.22),-8px -8px 22px rgba(255,255,255,.9)}}
 @media(prefers-reduced-motion:reduce){body.authbg .acard,body.authbg .inp input,body.authbg .inp select{transition:none!important}}
+
+/* Auth-only premium contrast refresh: green depth and visible neumorphic layers. */
+body.authbg{
+ background:radial-gradient(ellipse 55% 70% at 9% 22%,rgba(51,195,146,.38),transparent 72%),
+ radial-gradient(ellipse 52% 65% at 93% 85%,rgba(16,147,119,.43),transparent 72%),
+ linear-gradient(125deg,#c1e6d1 0%,#8ccbb2 47%,#2e806a 100%)!important;
+ background-attachment:fixed!important;
+}
+body.authbg .acard{
+ background:linear-gradient(145deg,rgba(240,253,246,.98) 0%,rgba(208,237,221,.98) 100%)!important;
+ border:1px solid rgba(255,255,255,.88)!important;
+ box-shadow:24px 28px 62px rgba(13,65,48,.36),-12px -12px 35px rgba(246,255,249,.35),inset 2px 2px 0 rgba(255,255,255,.95),inset -2px -2px 0 rgba(77,151,112,.13)!important;
+}
+body.authbg .acard:focus-within{
+ box-shadow:26px 30px 66px rgba(13,65,48,.4),-12px -12px 35px rgba(246,255,249,.4),inset 2px 2px 0 #fff,inset -2px -2px 0 rgba(77,151,112,.14)!important;
+}
+body.authbg .inp input,body.authbg .inp select{
+ background:linear-gradient(140deg,#d7eee0,#eaf9ef)!important;
+ border:1px solid rgba(82,154,117,.32)!important;
+ box-shadow:inset 5px 5px 11px rgba(44,113,79,.19),inset -4px -4px 10px rgba(255,255,255,.9)!important;
+ color:#143f2e!important;
+}
+body.authbg .inp input:focus,body.authbg .inp select:focus{
+ background:linear-gradient(140deg,#e1f6e9,#f5fff8)!important;
+ border-color:#18a979!important;
+ box-shadow:inset 3px 3px 8px rgba(43,115,78,.14),inset -3px -3px 9px #fff,0 0 0 4px rgba(0,145,94,.19),0 8px 22px rgba(20,99,64,.15)!important;
+}
+body.authbg .acard .lbl{color:#143c2c!important}
+body.authbg .acard .sub,body.authbg .acard .alt{color:#456c59!important}
+@media(max-width:600px){body.authbg{background:linear-gradient(145deg,#c5e8d3,#7bbda3 65%,#37866f)!important;background-attachment:fixed!important}body.authbg .acard{box-shadow:12px 18px 36px rgba(12,65,46,.3),inset 2px 2px 0 #fff!important}}
 </style></head><body class="{% if request.endpoint in ['auth.home','auth.reset_page'] %}authbg{% endif %}"><div id="root"></div><script>{% raw %}
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
