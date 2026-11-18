@@ -872,6 +872,7 @@ async function login(){
  if(!email&&!password){say('Please enter your email and password first.');$('#em')?.focus();return;}
  if(!email){say('Please enter your email address.');$('#em')?.focus();return;}
  if(!password.trim()){say('Please enter your password.');$('#pw')?.focus();return;}
+ if(!/^[^\s@]+@[^\s@]+\.com$/i.test(email)){say('Please enter a valid email address (example: name@gmail.com).');$('#em')?.focus();return;}
  const btn=$('#loginBtn');if(!btn||btn.disabled||dcAuthBusy)return;dcAuthBusy=true;const original=btn.innerHTML;btn.disabled=true;btn.innerHTML=`<span class="spinner" aria-hidden="true"></span>${t('loggingIn')}`;
  const hide=dcLoading('Signing you in','Securely checking your DOCheck! account…');
  try{await api('/api/login','POST',{email:v('em'),password:v('pw'),remember:$('#rm').checked});
